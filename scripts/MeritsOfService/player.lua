@@ -1,25 +1,28 @@
 local self = require("openmw.self")
 
 require("scripts.MeritsOfService.utils.consts")
-
-local completedQuests = {
-    -- factionKey = {
-    --     questId_1 = true,
-    --     questId_2 = true,
-    -- },
-}
+require("scripts.MeritsOfService.mofLogic")
 
 local function onQuestUpdate(questId, stage)
-    -- check if quest is completed
-    -- check quest's name
+    local factionName = GetFactionName(questId)
+
+    if not QuestFinished(questId, self)
+        or not factionName
+        or CompletedQuests[questId]
+    then
+        return
+    end
+
+    AddCompletedQuest(CompletedQuests, factionName, questId)
+    GrantStats(self, factionName, CompletedQuests[factionName].count)
 end
 
 local function onSave()
-    return completedQuests
+    return CompletedQuests
 end
 
 local function onLoad(saveData)
-    completedQuests = saveData
+    CompletedQuests = saveData
 end
 
 return {
@@ -28,4 +31,5 @@ return {
         onSave = onSave,
         onLoad = onLoad,
     },
+    -- TODO add an interface
 }

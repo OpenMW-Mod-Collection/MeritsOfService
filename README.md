@@ -14,11 +14,11 @@ Each value is configurable.
 
 ### Retroactive Rewards
 
-If you install this mod mid-playthrough, you still can get all the rewards factions owe you. They are not granted by default, so you'd need to manually execute the script for it in the console.
+If you install this mod mid-playthrough, you still can get all the rewards factions owe you. They are intentionally not granted by default, so you'd need to manually execute the script for it in the console.
 
 1. Open Morrowind's console by pressing `~`
 2. Run `luap` command
-3. Run `I.MeritsOfService.UpdateAllQuests()` command
+3. Run `I.MeritsOfService.UpdateAllQuests()`
 4. Run `exit()`
 5. And you're done!
 

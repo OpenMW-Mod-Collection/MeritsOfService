@@ -9,7 +9,7 @@ local function parseFactions()
 
         local file = vfs.open(fileName)
         local faction = markup.decodeYaml(file:read("*all"))
-        file.close()
+        file:close()
 
         factions[faction.name] = {
             attributes = faction.attributes,
