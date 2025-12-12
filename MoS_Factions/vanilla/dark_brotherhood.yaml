@@ -1,0 +1,10 @@
+name: dark brotherhood
+attributes:
+  - agility
+  - speed
+skills:
+  - marksman
+  - shortblade
+  - lightarmor
+  - acrobatics
+  - alchemy
