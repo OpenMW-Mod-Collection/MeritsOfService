@@ -1,0 +1,11 @@
+name: temple
+attributes:
+  - intelligence
+  - personality
+skills:
+  - alchemy
+  - bluntweapon
+  - conjuration
+  - mysticism
+  - restoration
+  - unarmored

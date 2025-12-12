@@ -1,0 +1,11 @@
+name: imperial cult
+attributes:
+  - personality
+  - willpower
+skills:
+  - speechcraft
+  - unarmored
+  - restoration
+  - mysticism
+  - enchant
+  - bluntweapon

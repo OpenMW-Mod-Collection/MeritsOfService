@@ -1,0 +1,11 @@
+name: thieves guild
+attributes:
+  - agility
+  - personality
+skills:
+  - marksman
+  - shortblade
+  - lightarmor
+  - acrobatics
+  - sneak
+  - security

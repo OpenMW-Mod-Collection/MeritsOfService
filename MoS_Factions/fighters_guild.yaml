@@ -1,0 +1,11 @@
+name: fighters guild
+attributes:
+  - strength
+  - endurance
+skills:
+  - axe
+  - longblade
+  - bluntweapon
+  - heavyarmor
+  - armorer
+  - block

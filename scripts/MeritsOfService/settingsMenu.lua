@@ -73,11 +73,11 @@ I.Settings.registerGroup {
             min = 0,
         },
         {
-            key = 'skillsContributeToLevel',
-            name = 'skillsContributeToLevel_name',
-            description = 'skillsContributeToLevel_description',
+            key = 'triggerSkillupHandlers',
+            name = 'triggerSkillupHandlers_name',
+            description = 'triggerSkillupHandlers_description',
             renderer = 'checkbox',
-            default = false,
+            default = true,
         },
         {
             key = 'carrySkillXp',
@@ -88,12 +88,14 @@ I.Settings.registerGroup {
         {
             key = 'capSkills',
             name = 'capSkills_name',
+            description = 'capSkills_description',
             renderer = 'checkbox',
             default = true,
         },
         {
             key = 'capAttr',
             name = 'capAttr_name',
+            description = 'capAttr_description',
             renderer = 'checkbox',
             default = true,
         },

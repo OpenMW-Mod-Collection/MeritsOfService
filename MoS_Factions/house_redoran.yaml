@@ -1,0 +1,11 @@
+name: house redoran
+attributes:
+  - endurance
+  - strength
+skills:
+  - athletics
+  - spear
+  - longblade
+  - heavyarmor
+  - mediumarmor
+  - armorer

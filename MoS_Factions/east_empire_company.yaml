@@ -1,0 +1,10 @@
+name: east empire company
+attributes:
+  - personality
+  - willpower
+skills:
+  - speechcraft
+  - mercantile
+  - security
+  - longblade
+  - mediumarmor

@@ -1,0 +1,11 @@
+name: orlukh
+attributes:
+  - strength
+  - endurance
+skills:
+  - handtohand
+  - enchant
+  - axe
+  - mediumarmor
+  - armorer
+  - block

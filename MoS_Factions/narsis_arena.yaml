@@ -1,0 +1,11 @@
+name: ja-natta syndicate
+attributes:
+  - strength
+  - endurance
+skills:
+  - marksman
+  - lightarmor
+  - athletics
+  - spear
+  - longblade
+  - heavyarmor

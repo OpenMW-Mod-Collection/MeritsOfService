@@ -1,0 +1,11 @@
+name: ja-natta syndicate
+attributes:
+  - strength
+  - agility
+skills:
+  - handtohand
+  - lightarmor
+  - security
+  - alchemy
+  - enchant
+  - bluntweapon

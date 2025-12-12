@@ -32,7 +32,7 @@ There are already countless faction quests improvement, revamp, overhaul, etc. m
 **_It's 100% lua._**  
 **_It's built different._**
 
-### Compatible with everything.
+### Compatible With Everything
 
 If a mod adds it's own quest and it's name starts with a prefix for faction, it will be considered a faction quest. For example:
 
@@ -41,15 +41,34 @@ If a mod adds it's own quest and it's name starts with a prefix for faction, it 
 
 You can also register individual mods to be associated with a certain faction by creating faction sheets. Check `FOR_MODDERS.md` for more details.
 
-### Supported quest mods
+### Out of the Box Supported Factions
 
-- TR, SHotN, PC by Project Tamriel
-- [Astrologian's Guild](https://www.nexusmods.com/morrowind/mods/51216) by Billyfighter
-- [The War for the Vvardenfell Brotherhood](https://www.nexusmods.com/morrowind/mods/47314) and [Morrowind Extended Cut](https://www.nexusmods.com/morrowind/mods/55615) by Caeris
+**Vanilla**
 
-### Compatible leveling mods
+- East Empire Company
+- Fighters Guild
+- House Hlaalu
+- House Redoran
+- House Telvanni
+- Imperial Cult
+- Imperial Legion
+- Mages Guild
+- Morag Tong
+- Thieves Guild
+- Tribunal Temple
 
-- [Natural Character Growth](https://www.nexusmods.com/morrowind/mods/57801) + [Skill Evolution](https://www.nexusmods.com/morrowind/mods/57802) by mym
+**Project Tamriel Mods**
+
+- Ja-Natta Syndicate
+- Narsis Arena
+- Orlukh Clan
+- Kingdom of Anvil
+- Order of Itinerant Priests
+
+**Other Mods**
+
+- Astrologians Guild from [Astrologian's Guild](https://www.nexusmods.com/morrowind/mods/51216) by Billyfighter
+- Vvardenfell Brotherhood from [The War for the Vvardenfell Brotherhood](https://www.nexusmods.com/morrowind/mods/47314) and [Morrowind Extended Cut](https://www.nexusmods.com/morrowind/mods/55615) by Caeris
 
 ## Consider also
 

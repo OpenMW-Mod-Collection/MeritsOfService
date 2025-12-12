@@ -1,0 +1,11 @@
+name: house telvanni
+attributes:
+  - willpower
+  - intelligence
+skills:
+  - mysticism
+  - conjuration
+  - illusion
+  - alteration
+  - destruction
+  - enchant

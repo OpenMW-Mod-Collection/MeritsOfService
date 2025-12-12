@@ -1,0 +1,11 @@
+name: imperial legion
+attributes:
+  - endurance
+  - personality
+skills:
+  - athletics
+  - spear
+  - longblade
+  - bluntweapon
+  - heavyarmor
+  - block

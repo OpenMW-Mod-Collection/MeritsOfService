@@ -1,0 +1,11 @@
+name: kingdom of anvil
+attributes:
+  - strength
+  - agility
+skills:
+  - mercantile
+  - marksman
+  - lightarmor
+  - athletics
+  - longblade
+  - heavyarmor

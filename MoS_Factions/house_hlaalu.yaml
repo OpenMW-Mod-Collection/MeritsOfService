@@ -1,0 +1,11 @@
+name: house hlaalu
+attributes:
+  - speed
+  - agility
+skills:
+  - speechcraft
+  - mercantile
+  - marksman
+  - shortblade
+  - lightarmor
+  - security

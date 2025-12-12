@@ -68,7 +68,7 @@ end
 
 function IncreaseStat(player, statType, stats)
     if statType == SKILL_REWARD then
-        if sectionRewards:get("skillsContributeToLevel") then
+        if sectionRewards:get("triggerSkillupHandlers") then
             increaseSkillsInterface(stats)
         else
             increaseSkillsBrute(player, stats)

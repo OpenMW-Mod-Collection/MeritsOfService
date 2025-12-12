@@ -1,0 +1,12 @@
+name: itinerant priests
+attributes:
+  - willpower
+  - personality
+skills:
+  - speechcraft
+  - unarmored
+  - alchemy
+  - restoration
+  - mysticism
+  - athletics
+  - bluntweapon
