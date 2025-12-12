@@ -18,7 +18,7 @@ If you install this mod mid-playthrough, you still can get all the rewards facti
 
 1. Open Morrowind's console by pressing `~`
 2. Run `luap` command
-3. Run `I.MeritsOfService.UpdateAllQuests()`
+3. Run `I.MeritsOfService.RetroactiveUpdate()`
 4. Run `exit()`
 5. And you're done!
 
@@ -39,8 +39,6 @@ If a mod adds it's own quest and it's name starts with a prefix for faction, it 
 - "Mages Guild: Missing Khajiit" - would count towards MG quest count
 - "Missing Khajiit" - won't count towards anything
 
-You can also register individual mods to be associated with a certain faction by creating faction sheets. Check `FOR_MODDERS.md` for more details.
-
 ### Out of the Box Supported Factions
 
 **Vanilla**
@@ -56,6 +54,8 @@ You can also register individual mods to be associated with a certain faction by
 - Morag Tong
 - Thieves Guild
 - Tribunal Temple
+- Camonna Tong *(in case some mod adds a questline for them, otherwise doesn't do anything on it's own)*
+- Dark Brotherhood *(in case some mod adds a questline for them)*
 
 **Project Tamriel Mods**
 
@@ -68,7 +68,11 @@ You can also register individual mods to be associated with a certain faction by
 **Other Mods**
 
 - Astrologians Guild from [Astrologian's Guild](https://www.nexusmods.com/morrowind/mods/51216) by Billyfighter
-- Vvardenfell Brotherhood from [The War for the Vvardenfell Brotherhood](https://www.nexusmods.com/morrowind/mods/47314) and [Morrowind Extended Cut](https://www.nexusmods.com/morrowind/mods/55615) by Caeris
+- Vvardenfell Brotherhood from [The War for the Vvardenfell Brotherhood](https://www.nexusmods.com/morrowind/mods/47314) / [Morrowind Extended Cut](https://www.nexusmods.com/morrowind/mods/55615) by Caeris
+
+## Making Your Own Patches
+
+[TODO]
 
 ## Consider also
 

@@ -1,5 +1,6 @@
 # name must match the beginning of quest's name
 name: mages guild
+# I'm sure you'll be able to figure attributes out
 attributes:
   - intelligence
   - willpower
@@ -11,7 +12,3 @@ skills:
   - enchant
   - illusion
   - mysticism
-
-# -- https://en.uesp.net/wiki/Tamriel_Rebuilt:Factions
-# -- https://en.uesp.net/wiki/Project_Tamriel:Skyrim/Factions
-# -- https://en.uesp.net/wiki/Project_Tamriel:Cyrodiil/Factions

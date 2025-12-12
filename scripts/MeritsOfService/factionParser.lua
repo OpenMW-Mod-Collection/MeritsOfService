@@ -5,10 +5,12 @@ local factions = {}
 
 local function validateFile(faction)
     -- TODO
+    return true
 end
 
 local function parseFactions()
     for fileName in vfs.pathsWithPrefix("MoS_Factions") do
+        print(fileName)
         local file = vfs.open(fileName)
         local faction = markup.decodeYaml(file:read("*all"))
         file:close()
@@ -19,7 +21,7 @@ local function parseFactions()
                 skills = faction.skills
             }
         else
-            print("Couldn't parse " .. fileName .. " faction template. It won't be loaded.")
+            error("Can't parse the " .. fileName .. ". Please verify the formatting.")
         end
     end
 end
