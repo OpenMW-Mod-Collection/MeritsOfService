@@ -1,0 +1,11 @@
+name: imperial knights
+attributes:
+  - endurance
+  - personality
+skills:
+  - athletics
+  - longblade
+  - bluntweapon
+  - heavyarmor
+  - armorer
+  - block

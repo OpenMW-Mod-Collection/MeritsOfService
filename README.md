@@ -54,8 +54,16 @@ If a mod adds it's own quest and it's name starts with a prefix for faction, it 
 - Morag Tong
 - Thieves Guild
 - Tribunal Temple
-- Camonna Tong *(in case some mod adds a questline for them, otherwise doesn't do anything on it's own)*
-- Dark Brotherhood *(in case some mod adds a questline for them)*
+
+**Not Joinable Vanilla Factions**  
+_In case some mod adds a questline for them._
+
+- Census and Excise
+- Dark Brotherhood
+- Imperial Knights
+- Talos Cult
+- Camonna Tong
+- Twin Lamps
 
 **Project Tamriel Mods**
 
@@ -69,6 +77,29 @@ If a mod adds it's own quest and it's name starts with a prefix for faction, it 
 
 - Astrologians Guild from [Astrologian's Guild](https://www.nexusmods.com/morrowind/mods/51216) by Billyfighter
 - Vvardenfell Brotherhood from [The War for the Vvardenfell Brotherhood](https://www.nexusmods.com/morrowind/mods/47314) / [Morrowind Extended Cut](https://www.nexusmods.com/morrowind/mods/55615) by Caeris
+
+**Incompatible Mods**  
+_Because quest name convention is not followed._
+
+- [Barristers Guild - Old Ebonheart Questline](https://www.nexusmods.com/morrowind/mods/55995) by levanesque
+
+**TODO**  
+_Include these faction mods too._
+
+- [Camonna Tong - Puppet Master](https://www.nexusmods.com/morrowind/mods/50740)
+- [Guild of Vampire Hunters](https://www.nexusmods.com/morrowind/mods/45832)
+- [Imperial Knights Faction](https://www.nexusmods.com/morrowind/mods/50643)
+- [Join the Royal Guards](https://www.nexusmods.com/morrowind/mods/50676)
+- [Census and Excise Office Faction](https://www.nexusmods.com/morrowind/mods/46798)
+- [Imperial Employment Office (MD Edit)](https://www.nexusmods.com/morrowind/mods/53845)
+- [Imperial Bank (Faction - Quests - Banking - Share Trading)](https://web.archive.org/web/20250401062632/https://www.nexusmods.com/morrowind/mods/54889)
+- [The Guiding Guild - Dune Inspired Guild Guides](https://www.nexusmods.com/morrowind/mods/54750)
+- [The Imperial Dwemer Society](https://www.nexusmods.com/morrowind/mods/45225)
+- [Illuminated Order Improved](https://www.nexusmods.com/morrowind/mods/47414)
+- [Welcome to the Arena](https://www.nexusmods.com/morrowind/mods/22002)
+- [Suran Underworld 3](https://www.nexusmods.com/morrowind/mods/40299)
+- [Dura gra-Bol's House Reclaimed - And the Grab-All Gang](https://www.nexusmods.com/morrowind/mods/46772)
+- [Great House Dagoth](https://www.nexusmods.com/morrowind/mods/48200)
 
 ## Making Your Own Patches
 

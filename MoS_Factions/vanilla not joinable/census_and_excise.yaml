@@ -1,0 +1,11 @@
+name: census and excise
+attributes:
+  - intelligence
+  - personality
+skills:
+  - speechcraft
+  - mercantile
+  - marksman
+  - lightarmor
+  - sneak
+  - longblade

@@ -1,0 +1,10 @@
+name: twin lamps
+attributes:
+  - intelligence
+  - speed
+skills:
+  - athletics
+  - security
+  - sneak
+  - speechcraft
+  - unarmored

@@ -1,0 +1,11 @@
+name: talos cult
+attributes:
+  - endurance
+  - personality
+skills:
+  - athletics
+  - spear
+  - longblade
+  - bluntweapon
+  - heavyarmor
+  - block
