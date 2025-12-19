@@ -57,6 +57,11 @@ local function increaseAttrs(player, stats)
     for attrId, count in pairs(stats) do
         local attr = AttrNameToHandler[attrId](player)
 
+        -- luck reward roll
+        if math.random() <= sectionRewards:get("luckRewardChance") then
+            attr = AttrNameToHandler.luck(player)
+        end
+
         -- increase attribute
         for _ = 1, count do
             attr.base = attr.base + 1

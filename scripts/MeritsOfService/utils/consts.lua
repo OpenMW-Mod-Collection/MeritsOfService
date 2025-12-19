@@ -55,6 +55,7 @@ AttrNameToHandler = {
     speed        = attrs.speed,
     intelligence = attrs.intelligence,
     willpower    = attrs.willpower,
+    luck         = attrs.luck,
 }
 
 RewardTypeToHandler = {

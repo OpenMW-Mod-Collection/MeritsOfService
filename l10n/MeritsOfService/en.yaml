@@ -22,3 +22,5 @@ triggerSkillupHandlers_description: |
   If enabled, skill rewards will trigger all respective handlers (vanilla and modded). This includes contributing to character level and triggering similar things adde by other mods.
 
   If disabled, skill rewards will just raise your base skill level ignoring all logic which might usually trigger on skill lvl ups.
+luckRewardChance_name: Luck Attribute Reward Chance
+luckRewardChance_description: Chance for Luck attribute to replace another attribute reward.

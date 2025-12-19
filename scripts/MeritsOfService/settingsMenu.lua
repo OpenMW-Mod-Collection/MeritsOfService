@@ -103,5 +103,15 @@ I.Settings.registerGroup {
             renderer = 'checkbox',
             default = true,
         },
+        {
+            key = 'luckRewardChance',
+            name = 'luckRewardChance_name',
+            description = 'luckRewardChance_description',
+            renderer = 'number',
+            integer = false,
+            default = 0.1,
+            min = 0,
+            max = 1,
+        },
     }
 }
