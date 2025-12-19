@@ -7,6 +7,10 @@ require("scripts.MeritsOfService.utils.string")
 
 local sectionRewards = storage.playerSection("SettingsMeritsOfService_rewards")
 
+-- +------------+
+-- | Increasers |
+-- +------------+
+
 local function increaseSkillsInterface(player, stats)
     local src = I.SkillProgression.SKILL_INCREASE_SOURCES.Usage
     for skillId, count in pairs(stats) do
@@ -78,16 +82,22 @@ local function increaseStat(player, statType, stats)
     end
 end
 
-function GrantStats(player, factionName, completedQuests)
-    if completedQuests % sectionRewards:get("questsPerReward") ~= 0 then return end
+-- +---------+
+-- | Rewards |
+-- +---------+
 
-    -- pick reward type
-    local rewardType = WeightedRandom({
+local function pickRewardType(faction)
+    if not faction[SKILL_REWARD] then return ATTRIBUTE_REWARD end
+
+    if not faction[ATTRIBUTE_REWARD] then return SKILL_REWARD end
+
+    return WeightedRandom({
         [SKILL_REWARD]     = sectionRewards:get("skillRewardWeight"),
         [ATTRIBUTE_REWARD] = sectionRewards:get("attributeRewardWeight")
     })
+end
 
-    -- determine reward amount
+local function pickRewardAmount(rewardType)
     local rewardRange = {
         [SKILL_REWARD] = {
             sectionRewards:get("minSkillReward"),
@@ -98,13 +108,14 @@ function GrantStats(player, factionName, completedQuests)
             sectionRewards:get("maxAttributeReward")
         }
     }
-    local rewardAmount = math.random(
-        table.unpack(rewardRange[rewardType]))
+    return math.random(table.unpack(rewardRange[rewardType]))
+end
 
+local function pickRewards(player, faction, rewardType, rewardAmount)
     -- init data for stat picking
     local rewards = {}
     local statList = {}
-    for t, name in pairs(Factions[factionName][rewardType]) do
+    for t, name in pairs(faction[rewardType]) do
         statList[t] = name
     end
     local caps = {
@@ -112,7 +123,7 @@ function GrantStats(player, factionName, completedQuests)
         [ATTRIBUTE_REWARD] = sectionRewards:get("capAttr"),
     }
 
-    -- pick specific stats to reward
+    -- pick stats
     for _ = 1, rewardAmount do
         -- prune capped stats
         for stat in pairs(statList) do
@@ -129,6 +140,18 @@ function GrantStats(player, factionName, completedQuests)
         local stat = RandomChoice(statList)
         rewards[stat] = (rewards[stat] or 0) + 1
     end
+
+    return rewards
+end
+
+function GrantStats(player, factionName, completedQuests)
+    if completedQuests % sectionRewards:get("questsPerReward") ~= 0 then return end
+
+    local faction = Factions[factionName]
+    local rewardType = pickRewardType(faction)
+    local rewardAmount = pickRewardAmount(rewardType)
+
+    local rewards = pickRewards(player, faction, rewardType, rewardAmount)
 
     increaseStat(player, rewardType, rewards)
 end
