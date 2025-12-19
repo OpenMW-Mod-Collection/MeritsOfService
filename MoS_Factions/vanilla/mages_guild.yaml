@@ -1,6 +1,6 @@
-# name must match the beginning of quest's name
+# name must match the beginning of the quest's name
 name: mages guild
-# I'm sure you'll be able to figure attributes out
+# check consts.lua for values
 attributes:
   - intelligence
   - willpower

@@ -1,6 +1,6 @@
 local types = require("openmw.types")
 
-Factions = require("scripts.MeritsOfService.factionParser")
+Factions = require("scripts.MeritsOfService.utils.factionParser")
 
 SKILL_REWARD = "skills"
 ATTRIBUTE_REWARD = "attributes"
