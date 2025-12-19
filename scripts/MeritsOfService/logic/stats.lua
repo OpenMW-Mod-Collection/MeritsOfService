@@ -51,7 +51,7 @@ end
 local function increaseAttrs(player, stats)
     local msg = ""
     for attrId, count in pairs(stats) do
-        local attr = player.type.stats.attributes[attrId](player)
+        local attr = AttrNameToHandler[attrId](player)
 
         -- increase attribute
         for _ = 1, count do
@@ -66,14 +66,69 @@ local function increaseAttrs(player, stats)
     ambient.playSound("skillraise")
 end
 
-function IncreaseStat(player, statType, stats)
+local function increaseStat(player, statType, stats)
     if statType == SKILL_REWARD then
         if sectionRewards:get("triggerSkillupHandlers") then
-            increaseSkillsInterface(stats)
+            increaseSkillsInterface(player, stats)
         else
             increaseSkillsBrute(player, stats)
         end
-    else
+    elseif statType == ATTRIBUTE_REWARD then
         increaseAttrs(player, stats)
     end
+end
+
+function GrantStats(player, factionName, completedQuests)
+    if completedQuests % sectionRewards:get("questsPerReward") ~= 0 then return end
+
+    -- pick reward type
+    local rewardType = WeightedRandom({
+        [SKILL_REWARD]     = sectionRewards:get("skillRewardWeight"),
+        [ATTRIBUTE_REWARD] = sectionRewards:get("attributeRewardWeight")
+    })
+
+    -- determine reward amount
+    local rewardRange = {
+        [SKILL_REWARD] = {
+            sectionRewards:get("minSkillReward"),
+            sectionRewards:get("maxSkillReward")
+        },
+        [ATTRIBUTE_REWARD] = {
+            sectionRewards:get("minAttributeReward"),
+            sectionRewards:get("maxAttributeReward")
+        }
+    }
+    local rewardAmount = math.random(
+        table.unpack(rewardRange[rewardType]))
+
+    -- init data for stat picking
+    local rewards = {}
+    local statList = {}
+    for t, name in pairs(Factions[factionName][rewardType]) do
+        statList[t] = name
+    end
+    local caps = {
+        [SKILL_REWARD]     = sectionRewards:get("capSkills"),
+        [ATTRIBUTE_REWARD] = sectionRewards:get("capAttr"),
+    }
+
+    -- pick specific stats to reward
+    for _ = 1, rewardAmount do
+        -- prune capped stats
+        for stat in pairs(statList) do
+            local currStat = RewardTypeToHandler[rewardType][stat](player)
+            local currReward = rewards[stat] or 0
+
+            if currStat + currReward >= caps[rewardType] then
+                statList[stat] = nil
+            end
+        end
+
+        if next(statList) == nil then break end
+
+        local stat = RandomChoice(statList)
+        rewards[stat] = (rewards[stat] or 0) + 1
+    end
+
+    increaseStat(player, rewardType, rewards)
 end

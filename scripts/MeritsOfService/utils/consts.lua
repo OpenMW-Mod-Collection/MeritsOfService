@@ -46,3 +46,18 @@ SkillNameToHandler = {
     speechcraft = skills.speechcraft,
     unarmored   = skills.unarmored,
 }
+
+local attrs = types.NPC.stats.attributes
+AttrNameToHandler = {
+    strength     = attrs.strength,
+    agility      = attrs.agility,
+    endurance    = attrs.endurance,
+    speed        = attrs.speed,
+    intelligence = attrs.intelligence,
+    willpower    = attrs.willpower,
+}
+
+RewardTypeToHandler = {
+    [SKILL_REWARD]     = SkillNameToHandler,
+    [ATTRIBUTE_REWARD] = AttrNameToHandler,
+}

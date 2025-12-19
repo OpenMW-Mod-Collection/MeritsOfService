@@ -1,7 +1,8 @@
 local self = require("openmw.self")
 
 require("scripts.MeritsOfService.utils.consts")
-require("scripts.MeritsOfService.mofLogic")
+require("scripts.MeritsOfService.logic.quests")
+require("scripts.MeritsOfService.logic.stats")
 
 local function onQuestUpdate(questId, stage)
     local factionName = GetFactionName(questId)
