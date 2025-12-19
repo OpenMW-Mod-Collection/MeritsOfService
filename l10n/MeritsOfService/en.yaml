@@ -1,26 +1,42 @@
 page_name: Merits of Service
-page_description: Get skills and attributes as additional rewards for completing faction quests. Rewards depend on factions.
+page_description: |
+  Get skills and attributes as additional rewards for completing faction quests. Rewards depend on factions.
 
-rewards_groupName: Rewards
-rewards_groupDesc: |
+  Getting rewards retroactively:
+  1. Open console by pressing "~"
+  2. Run the "luap" command
+  3. Run "I.MeritsOfService.RetroactiveUpdate()"
+  4. Run "exit()"
+  5. Done!
+
+general_groupName: General
+general_groupDesc: |
   Note for TR/PT enjoyers!
 
   Current defaults are intended for factions in just one region (vanilla faction questlines average ~30 quests).
   If you plan to play both Vvardenfell and Mainland guild questlines, I'd strongly suggest adjusting these values for obvious reasons.
 questsPerReward_name: Quests per Stat Reward
-minSkillReward_name: Min Skills Granted
-maxSkillReward_name: Max Skills Granted
-minAttributeReward_name: Min Attributes Granted
-maxAttributeReward_name: Max Attributes Granted
 skillRewardWeight_name: Skill Reward Weight
 attributeRewardWeight_name: Attribute Reward Weight
-carrySkillXp_name: Carry Skill Xp
+
+skills_groupName: Skill Rewards
+minSkillReward_name: Min Skills Granted
+maxSkillReward_name: Max Skills Granted
 capSkills_name: Skill Rewards Cap
-capAttr_name: Attribute Rewards Cap
+carrySkillXp_name: Carry Skill Xp
 triggerSkillupHandlers_name: Skill Rewards Trigger Handlers
 triggerSkillupHandlers_description: |
   If enabled, skill rewards will trigger all respective handlers (vanilla and modded). This includes contributing to character level and triggering similar things added by other mods.
 
   If disabled, skill rewards will just raise your base skill level, ignoring all logic which might usually trigger on skill level ups.
+
+attributes_groupName: Attribute Rewards
+minAttributeReward_name: Min Attributes Granted
+maxAttributeReward_name: Max Attributes Granted
+capAttr_name: Attribute Rewards Cap
+luckRewardType_name: Luck Attribute Reward Type
+luckRewardType_description: |
+  Replace -> Luck has a chance to replace any other attribute reward.
+  
+  Bonus -> Luck is granted in addition to other attribute rewards.
 luckRewardChance_name: Luck Attribute Reward Chance
-luckRewardChance_description: Chance for Luck attribute to replace another attribute reward.

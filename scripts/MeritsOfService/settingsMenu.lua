@@ -8,11 +8,11 @@ I.Settings.registerPage {
 }
 
 I.Settings.registerGroup {
-    key = 'SettingsMeritsOfService_rewards',
+    key = 'SettingsMeritsOfService_general',
     page = 'MeritsOfService',
     l10n = 'MeritsOfService',
-    name = 'rewards_groupName',
-    description = 'rewards_groupDesc',
+    name = 'general_groupName',
+    description = 'general_groupDesc',
     permanentStorage = true,
     order = 1,
     settings = {
@@ -23,38 +23,6 @@ I.Settings.registerGroup {
             integer = true,
             default = 3,
             min = 1,
-        },
-        {
-            key = 'minSkillReward',
-            name = 'minSkillReward_name',
-            renderer = 'number',
-            integer = true,
-            default = 3,
-            min = 0,
-        },
-        {
-            key = 'maxSkillReward',
-            name = 'maxSkillReward_name',
-            renderer = 'number',
-            integer = true,
-            default = 5,
-            min = 0,
-        },
-        {
-            key = 'minAttributeReward',
-            name = 'minAttributeReward_name',
-            renderer = 'number',
-            integer = true,
-            default = 2,
-            min = 0,
-        },
-        {
-            key = 'maxAttributeReward',
-            name = 'maxAttributeReward_name',
-            renderer = 'number',
-            integer = true,
-            default = 3,
-            min = 0,
         },
         {
             key = 'skillRewardWeight',
@@ -72,29 +40,46 @@ I.Settings.registerGroup {
             default = 1,
             min = 0,
         },
+    }
+}
+
+I.Settings.registerGroup {
+    key = 'SettingsMeritsOfService_skills',
+    page = 'MeritsOfService',
+    l10n = 'MeritsOfService',
+    name = 'skills_groupName',
+    permanentStorage = true,
+    order = 2,
+    settings = {
+        {
+            key = 'minSkillReward',
+            name = 'minSkillReward_name',
+            renderer = 'number',
+            integer = true,
+            default = 3,
+            min = 0,
+        },
+        {
+            key = 'maxSkillReward',
+            name = 'maxSkillReward_name',
+            renderer = 'number',
+            integer = true,
+            default = 5,
+            min = 0,
+        },
+        {
+            key = 'capSkills',
+            name = 'capSkills_name',
+            renderer = 'number',
+            integer = true,
+            default = 100,
+            min = 1,
+        },
         {
             key = 'carrySkillXp',
             name = 'carrySkillXp_name',
             renderer = 'checkbox',
             default = true,
-        },
-        {
-            key = 'capSkills',
-            name = 'capSkills_name',
-            description = 'capSkills_description',
-            renderer = 'number',
-            integer = true,
-            default = 100,
-            min = 1,
-        },
-        {
-            key = 'capAttr',
-            name = 'capAttr_name',
-            description = 'capAttr_description',
-            renderer = 'number',
-            integer = true,
-            default = 100,
-            min = 1,
         },
         {
             key = 'triggerSkillupHandlers',
@@ -103,10 +88,58 @@ I.Settings.registerGroup {
             renderer = 'checkbox',
             default = true,
         },
+    }
+}
+
+I.Settings.registerGroup {
+    key = 'SettingsMeritsOfService_attributes',
+    page = 'MeritsOfService',
+    l10n = 'MeritsOfService',
+    name = 'attributes_groupName',
+    permanentStorage = true,
+    order = 3,
+    settings = {
+        {
+            key = 'minAttributeReward',
+            name = 'minAttributeReward_name',
+            renderer = 'number',
+            integer = true,
+            default = 2,
+            min = 0,
+        },
+        {
+            key = 'maxAttributeReward',
+            name = 'maxAttributeReward_name',
+            renderer = 'number',
+            integer = true,
+            default = 3,
+            min = 0,
+        },
+        {
+            key = 'capAttr',
+            name = 'capAttr_name',
+            renderer = 'number',
+            integer = true,
+            default = 100,
+            min = 1,
+        },
+        {
+            key = 'luckRewardType',
+            name = 'luckRewardType_name',
+            description = 'luckRewardType_description',
+            renderer = 'select',
+            argument = {
+                l10n = 'MeritsOfService',
+                items = {
+                    "Replace",
+                    "Bonus",
+                },
+            },
+            default = "Replace",
+        },
         {
             key = 'luckRewardChance',
             name = 'luckRewardChance_name',
-            description = 'luckRewardChance_description',
             renderer = 'number',
             integer = false,
             default = 0.1,

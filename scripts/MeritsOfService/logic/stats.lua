@@ -5,7 +5,9 @@ local storage = require("openmw.storage")
 require("scripts.MeritsOfService.utils.consts")
 require("scripts.MeritsOfService.utils.string")
 
-local sectionRewards = storage.playerSection("SettingsMeritsOfService_rewards")
+local sectionGeneral = storage.playerSection("SettingsMeritsOfService_general")
+local sectionSkills = storage.playerSection("SettingsMeritsOfService_skills")
+local sectionAttrs = storage.playerSection("SettingsMeritsOfService_attributes")
 
 -- +------------+
 -- | Increasers |
@@ -23,7 +25,7 @@ local function increaseSkillsInterface(player, stats)
         end
 
         -- carry xp if needed
-        if sectionRewards:get("carrySkillXp") then
+        if sectionSkills:get("carrySkillXp") then
             skill.progress = skillXp
         end
     end
@@ -40,7 +42,7 @@ local function increaseSkillsBrute(player, stats)
         end
 
         -- reset xp if needed
-        if not sectionRewards:get("carrySkillXp") then
+        if not sectionSkills:get("carrySkillXp") then
             skill.progress = 0
         end
 
@@ -58,7 +60,7 @@ local function increaseAttrs(player, stats)
         local attr = AttrNameToHandler[attrId](player)
 
         -- luck reward roll
-        if math.random() <= sectionRewards:get("luckRewardChance") then
+        if math.random() <= sectionAttrs:get("luckRewardChance") then
             attr = AttrNameToHandler.luck(player)
         end
 
@@ -77,7 +79,7 @@ end
 
 local function increaseStat(player, statType, stats)
     if statType == SKILL_REWARD then
-        if sectionRewards:get("triggerSkillupHandlers") then
+        if sectionSkills:get("triggerSkillupHandlers") then
             increaseSkillsInterface(player, stats)
         else
             increaseSkillsBrute(player, stats)
@@ -97,20 +99,20 @@ local function pickRewardType(faction)
     if not faction[ATTRIBUTE_REWARD] then return SKILL_REWARD end
 
     return WeightedRandom({
-        [SKILL_REWARD]     = sectionRewards:get("skillRewardWeight"),
-        [ATTRIBUTE_REWARD] = sectionRewards:get("attributeRewardWeight")
+        [SKILL_REWARD]     = sectionGeneral:get("skillRewardWeight"),
+        [ATTRIBUTE_REWARD] = sectionGeneral:get("attributeRewardWeight")
     })
 end
 
 local function pickRewardAmount(rewardType)
     local rewardRange = {
         [SKILL_REWARD] = {
-            sectionRewards:get("minSkillReward"),
-            sectionRewards:get("maxSkillReward")
+            sectionSkills:get("minSkillReward"),
+            sectionSkills:get("maxSkillReward")
         },
         [ATTRIBUTE_REWARD] = {
-            sectionRewards:get("minAttributeReward"),
-            sectionRewards:get("maxAttributeReward")
+            sectionAttrs:get("minAttributeReward"),
+            sectionAttrs:get("maxAttributeReward")
         }
     }
     return math.random(table.unpack(rewardRange[rewardType]))
@@ -124,8 +126,8 @@ local function pickRewards(player, faction, rewardType, rewardAmount)
         statList[t] = name
     end
     local caps = {
-        [SKILL_REWARD]     = sectionRewards:get("capSkills"),
-        [ATTRIBUTE_REWARD] = sectionRewards:get("capAttr"),
+        [SKILL_REWARD]     = sectionSkills:get("capSkills"),
+        [ATTRIBUTE_REWARD] = sectionAttrs:get("capAttr"),
     }
 
     -- pick stats
@@ -149,10 +151,10 @@ local function pickRewards(player, faction, rewardType, rewardAmount)
     return rewards
 end
 
-function GrantStats(player, factionName, completedQuests)
-    if completedQuests % sectionRewards:get("questsPerReward") ~= 0 then return end
+function GrantStats(player, factions, factionName, completedQuests)
+    if completedQuests % sectionGeneral:get("questsPerReward") ~= 0 then return end
 
-    local faction = Factions[factionName]
+    local faction = factions[factionName]
     local rewardType = pickRewardType(faction)
     local rewardAmount = pickRewardAmount(rewardType)
 

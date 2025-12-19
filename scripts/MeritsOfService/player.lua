@@ -4,8 +4,10 @@ require("scripts.MeritsOfService.utils.consts")
 require("scripts.MeritsOfService.logic.quests")
 require("scripts.MeritsOfService.logic.stats")
 
+local factions = require("scripts.MeritsOfService.utils.factionParser")
+
 local function onQuestUpdate(questId, stage)
-    local factionName = GetFactionName(questId)
+    local factionName = GetFactionName(factions, questId)
 
     if not QuestFinished(questId, self)
         or not factionName
@@ -15,7 +17,7 @@ local function onQuestUpdate(questId, stage)
     end
 
     AddCompletedQuest(CompletedQuests, factionName, questId)
-    GrantStats(self, factionName, CompletedQuests[factionName].count)
+    GrantStats(self, factions, factionName, CompletedQuests[factionName].count)
 end
 
 local function onSave()

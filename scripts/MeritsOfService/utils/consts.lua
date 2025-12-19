@@ -1,7 +1,5 @@
 local types = require("openmw.types")
 
-Factions = require("scripts.MeritsOfService.utils.factionParser")
-
 SKILL_REWARD = "skills"
 ATTRIBUTE_REWARD = "attributes"
 
@@ -50,15 +48,21 @@ SkillNameToHandler = {
 local attrs = types.NPC.stats.attributes
 AttrNameToHandler = {
     strength     = attrs.strength,
-    agility      = attrs.agility,
-    endurance    = attrs.endurance,
-    speed        = attrs.speed,
     intelligence = attrs.intelligence,
     willpower    = attrs.willpower,
+    agility      = attrs.agility,
+    speed        = attrs.speed,
+    endurance    = attrs.endurance,
+    personality  = attrs.personality,
     luck         = attrs.luck,
 }
 
 RewardTypeToHandler = {
     [SKILL_REWARD]     = SkillNameToHandler,
     [ATTRIBUTE_REWARD] = AttrNameToHandler,
+}
+
+LuckRewardTypes = {
+    replace = "Replace",
+    bonus   = "Bonus",
 }
