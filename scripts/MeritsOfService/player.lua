@@ -25,11 +25,22 @@ local function onLoad(saveData)
     CompletedQuests = saveData
 end
 
+local function retroactiveUpdate()
+    -- TODO: test it
+    for questId, _ in ipairs(self.type.quests(self)) do
+        onQuestUpdate(questId, nil)
+    end
+end
+
 return {
     engineHandlers = {
         onQuestUpdate = onQuestUpdate,
         onSave = onSave,
         onLoad = onLoad,
     },
-    -- TODO add an interface
+    interfaceName = "MeritsOfService",
+    interface = {
+        version = 1,
+        RetroactiveUpdate = retroactiveUpdate,
+    },
 }

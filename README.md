@@ -83,8 +83,7 @@ _Because quest name convention is not followed._
 
 - [Barristers Guild - Old Ebonheart Questline](https://www.nexusmods.com/morrowind/mods/55995) by levanesque
 
-**TODO**  
-_Include these faction mods too._
+**TODO tests**
 
 - [Camonna Tong - Puppet Master](https://www.nexusmods.com/morrowind/mods/50740)
 - [Guild of Vampire Hunters](https://www.nexusmods.com/morrowind/mods/45832)
