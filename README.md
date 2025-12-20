@@ -84,29 +84,7 @@ _In case some mod adds a questline for them._
 _Because quest name convention is not followed._
 
 - [Barristers Guild - Old Ebonheart Questline](https://www.nexusmods.com/morrowind/mods/55995) by levanesque
-- [Camonna Tong - Puppet Master](https://www.nexusmods.com/morrowind/mods/50740) (part of the [Morrowind Extended Cut](https://www.nexusmods.com/morrowind/mods/55615)) by Caeris 
-
-**TODO tests**
-
-- [Guild of Vampire Hunters](https://www.nexusmods.com/morrowind/mods/45832)
-- [Imperial Knights Faction](https://www.nexusmods.com/morrowind/mods/50643)
-- [Join the Royal Guards](https://www.nexusmods.com/morrowind/mods/50676)
-- [Census and Excise Office Faction](https://www.nexusmods.com/morrowind/mods/46798)
-- [Imperial Employment Office (MD Edit)](https://www.nexusmods.com/morrowind/mods/53845)
-- [Imperial Bank (Faction - Quests - Banking - Share Trading)](https://www.nexusmods.com/morrowind/mods/54889?tab=files&file_id=1000052511)
-- [The Guiding Guild - Dune Inspired Guild Guides](https://www.nexusmods.com/morrowind/mods/54750)
-- [The Imperial Dwemer Society](https://www.nexusmods.com/morrowind/mods/45225)
-- [Illuminated Order Improved](https://www.nexusmods.com/morrowind/mods/47414)
-- [Welcome to the Arena](https://www.nexusmods.com/morrowind/mods/22002)
-- [Suran Underworld 3](https://www.nexusmods.com/morrowind/mods/40299)
-- [Dura gra-Bol's House Reclaimed - And the Grab-All Gang](https://www.nexusmods.com/morrowind/mods/46772)
-- [Great House Dagoth](https://www.nexusmods.com/morrowind/mods/48200)
-- [The Arcane Watch -- FULL](https://www.nexusmods.com/morrowind/mods/54522)
-- [The Arcane Academy of Venarius](https://www.nexusmods.com/morrowind/mods/53675)
-- [Join the Dark Brotherhood - Dark Brotherhood Faction Mod](https://www.nexusmods.com/morrowind/mods/48858)
-- [Quarra Clan - Refreshed](https://www.nexusmods.com/morrowind/mods/48955)
-- [Quests for Clans and Vampire Legends (QCVL)](https://www.nexusmods.com/morrowind/mods/49486)
-- [OAAB Brother Junipers Twin Lamps](https://www.nexusmods.com/morrowind/mods/51424)
+- [Camonna Tong - Puppet Master](https://www.nexusmods.com/morrowind/mods/50740) (part of the [Morrowind Extended Cut](https://www.nexusmods.com/morrowind/mods/55615)) by Caeris
 
 ## Making Your Own Patches
 
