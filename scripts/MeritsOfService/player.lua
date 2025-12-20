@@ -9,9 +9,17 @@ local factions = require("scripts.MeritsOfService.utils.factionParser")
 local function onQuestUpdate(questId, stage)
     local factionName = GetFactionName(factions, questId)
 
+    -- init faction if it's a new one
+    if factionName and not CompletedQuests[factionName] then
+        CompletedQuests[factionName] = {
+            count = 0,
+            quests = {}
+        }
+    end
+
     if not QuestFinished(questId, self)
         or not factionName
-        or CompletedQuests[questId]
+        or CompletedQuests[factionName].quests[questId]
     then
         return
     end
