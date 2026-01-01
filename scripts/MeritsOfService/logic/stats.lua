@@ -81,7 +81,7 @@ local function increaseAttrs(player, stats)
     -- luck reward roll - BONUS
     if sectionAttrs:get("luckRewardType") == LuckRewardTypes.BONUS
         and math.random() <= sectionAttrs:get("luckRewardChance")
-        and AttrNameToHandler.luck(player).base <= sectionAttrs:get("capAttr")
+        and AttrNameToHandler.luck(player).base < sectionAttrs:get("capAttr")
     then
         local attr = AttrNameToHandler.luck(player)
         attr.base = attr.base + 1
@@ -138,8 +138,8 @@ local function pickRewards(player, faction, rewardType, rewardAmount)
     -- init data for stat picking
     local rewards = {}
     local statList = {}
-    for i, name in ipairs(faction[rewardType]) do
-        statList[i] = name
+    for _, name in ipairs(faction[rewardType]) do
+        statList[name] = name
     end
     local caps = {
         [SKILL_REWARD]     = sectionSkills:get("capSkills"),
@@ -149,7 +149,7 @@ local function pickRewards(player, faction, rewardType, rewardAmount)
     -- pick stats
     for _ = 1, rewardAmount do
         -- prune capped stats
-        for _, stat in pairs(statList) do
+        for stat, _ in pairs(statList) do
             local currStat = RewardTypeToHandler[rewardType][stat](player)
             local currReward = rewards[stat] or 0
 
@@ -175,6 +175,16 @@ function GrantStats(player, factions, factionName, completedQuests)
     local rewardAmount = pickRewardAmount(rewardType)
 
     local rewards = pickRewards(player, faction, rewardType, rewardAmount)
+
+    -- if the limit on picked type of reward is reached
+    if not next(rewards) then
+        rewardType = SwapRewards[rewardType]
+        rewardAmount = pickRewardAmount(rewardType)
+        rewards = pickRewards(player, faction, rewardType, rewardAmount)
+    end
+
+    -- if both skill and attribute rewards are exhausted
+    if not next(rewards) then return end
 
     increaseStat(player, rewardType, rewards)
 end

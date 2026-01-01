@@ -1,5 +1,16 @@
 # Merits of Service (OpenMW)
 
+## 2.1
+
+### Features
+
+- Upon reaching reward cap, the mod will reward player with the other type of reward.
+- If player reached reward cap in both attributes and skills, he won't get any notifications about the missed rewards.
+
+### Fixes
+
+- Fixed caps not working at all
+
 ## 2.0
 
 ### Features

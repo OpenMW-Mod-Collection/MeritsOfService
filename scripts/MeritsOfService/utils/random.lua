@@ -1,6 +1,20 @@
-function RandomChoice(list)
-    return list[math.random(#list)]
+function RandomChoice(t)
+    local n = 0
+    for _ in pairs(t) do
+        n = n + 1
+    end
+
+    local target = math.random(n)
+    local i = 0
+
+    for _, v in pairs(t) do
+        i = i + 1
+        if i == target then
+            return v
+        end
+    end
 end
+
 
 --- Pick a random key from a weight table
 --- @param weights table<string, number>   -- e.g. { a = 30, b = 50, c = 20 }

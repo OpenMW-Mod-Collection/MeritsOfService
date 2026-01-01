@@ -67,3 +67,8 @@ LuckRewardTypes = {
     REPLACE = "Replace",
     BONUS   = "Bonus",
 }
+
+SwapRewards = {
+    [SKILL_REWARD] = ATTRIBUTE_REWARD,
+    [ATTRIBUTE_REWARD] = SKILL_REWARD,
+}
