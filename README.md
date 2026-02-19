@@ -8,21 +8,19 @@ I could also go on about how, most of the time, faction-favored skills don't cor
 
 ## Features
 
-Every 3 faction quests, the player is granted either **3-5 skill increases** or **2-3 attribute increases**, depending on the faction. And that's it.
+Every faction quest, the player is granted either a skill increase or an attribute increase, depending on the faction. And that's it.
 
 Except maybe 10% chance to get bonus Luck each attribute reward.
 
-Every value is configurable.
+And every value is configurable.
 
 ### Retroactive Rewards
 
 If you install this mod mid-playthrough, you can still receive all the rewards factions owe you. **They are intentionally not granted automatically**, so you need to trigger them manually via the console.
 
 1. Open Morrowind's console by pressing `~`
-2. Run the `luap` command
-3. Run `I.MeritsOfService.RetroactiveUpdate()`
-4. Run `exit()`
-5. Done!
+2. Run `lua MeritMyService`
+3. Done!
 
 ## Compatibility
 
@@ -50,3 +48,4 @@ If a mod adds its own quest and the quest name starts with a faction prefix, it 
 ## Credits
 
 **Sosnoviy Bor** - Author
+**LiNGeN** - Brilliant idea for "Fast and Small" settings preset

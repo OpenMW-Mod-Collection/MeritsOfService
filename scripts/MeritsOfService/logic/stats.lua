@@ -3,10 +3,9 @@ local I = require("openmw.interfaces")
 local storage = require("openmw.storage")
 
 require("scripts.MeritsOfService.utils.consts")
-require("scripts.MeritsOfService.utils.string")
 require("scripts.MeritsOfService.utils.random")
 
-local sectionGeneral = storage.playerSection("SettingsMeritsOfService_general")
+local sectionRewards = storage.playerSection("SettingsMeritsOfService_rewards")
 local sectionSkills = storage.playerSection("SettingsMeritsOfService_skills")
 local sectionAttrs = storage.playerSection("SettingsMeritsOfService_attributes")
 
@@ -15,9 +14,10 @@ local sectionAttrs = storage.playerSection("SettingsMeritsOfService_attributes")
 -- +------------+
 
 local function increaseSkillsInterface(player, stats)
+    local msg = ""
     local src = I.SkillProgression.SKILL_INCREASE_SOURCES.Usage
     for skillId, count in pairs(stats) do
-        local skill = SkillNameToHandler[skillId](player)
+        local skill = SkillIdToHandler[skillId](player)
         local skillXp = skill.progress
 
         -- increase skill
@@ -29,13 +29,22 @@ local function increaseSkillsInterface(player, stats)
         if sectionSkills:get("carrySkillXp") then
             skill.progress = skillXp
         end
+
+        -- update message
+        msg = msg .. "Your " .. SkillIdToName[skillId] .. " skill increased to " .. tostring(skill.base) .. ".\n"
+    end
+
+    msg = msg:sub(1, -2) -- remove last newline
+    -- send message only if player is in dialogue
+    if I.UI.getMode() == I.UI.MODE.Dialogue then
+        player:sendEvent("ShowMessage", { message = msg })
     end
 end
 
 local function increaseSkillsBrute(player, stats)
     local msg = ""
     for skillId, count in pairs(stats) do
-        local skill = SkillNameToHandler[skillId](player)
+        local skill = SkillIdToHandler[skillId](player)
 
         -- increase skill
         for _ = 1, count do
@@ -48,7 +57,7 @@ local function increaseSkillsBrute(player, stats)
         end
 
         -- update message
-        msg = msg .. "Your " .. Capitalize(skillId) .. " increased to " .. tostring(skill.base) .. ".\n"
+        msg = msg .. "Your " .. SkillIdToName[skillId] .. " skill increased to " .. tostring(skill.base) .. ".\n"
     end
     msg = msg:sub(1, -2) -- remove last newline
     player:sendEvent("ShowMessage", { message = msg })
@@ -58,15 +67,15 @@ end
 local function increaseAttrs(player, stats)
     local msg = ""
     for attrId, count in pairs(stats) do
-        local attr = AttrNameToHandler[attrId](player)
+        local attr = AttrIdToHandler[attrId](player)
 
         -- luck reward roll - REPLACE
         if sectionAttrs:get("luckRewardType") == LuckRewardTypes.REPLACE
             and math.random() <= sectionAttrs:get("luckRewardChance")
-            and AttrNameToHandler.luck(player).base <= sectionAttrs:get("capAttr")
+            and AttrIdToHandler.luck(player).base <= sectionAttrs:get("capAttr")
         then
             attrId = "luck"
-            attr = AttrNameToHandler.luck(player)
+            attr = AttrIdToHandler.luck(player)
         end
 
         -- increase attribute
@@ -75,15 +84,15 @@ local function increaseAttrs(player, stats)
         end
 
         -- update message
-        msg = msg .. "Your " .. Capitalize(attrId) .. " increased to " .. tostring(attr.base) .. ".\n"
+        msg = msg .. "Your " .. AttrIdToName[attrId] .. " increased to " .. tostring(attr.base) .. ".\n"
     end
 
     -- luck reward roll - BONUS
     if sectionAttrs:get("luckRewardType") == LuckRewardTypes.BONUS
         and math.random() <= sectionAttrs:get("luckRewardChance")
-        and AttrNameToHandler.luck(player).base < sectionAttrs:get("capAttr")
+        and AttrIdToHandler.luck(player).base < sectionAttrs:get("capAttr")
     then
-        local attr = AttrNameToHandler.luck(player)
+        local attr = AttrIdToHandler.luck(player)
         attr.base = attr.base + 1
         msg = msg .. "Your Luck increased to " .. tostring(attr.base) .. ".\n"
     end
@@ -115,8 +124,8 @@ local function pickRewardType(faction)
     if not faction[ATTRIBUTE_REWARD] then return SKILL_REWARD end
 
     return WeightedRandom({
-        [SKILL_REWARD]     = sectionGeneral:get("skillRewardWeight"),
-        [ATTRIBUTE_REWARD] = sectionGeneral:get("attributeRewardWeight")
+        [SKILL_REWARD]     = sectionRewards:get("skillRewardWeight"),
+        [ATTRIBUTE_REWARD] = sectionRewards:get("attributeRewardWeight")
     })
 end
 
@@ -168,7 +177,7 @@ local function pickRewards(player, faction, rewardType, rewardAmount)
 end
 
 function GrantStats(player, factions, factionName, completedQuests)
-    if completedQuests % sectionGeneral:get("questsPerReward") ~= 0 then return end
+    if completedQuests % sectionRewards:get("questsPerReward") ~= 0 then return end
 
     local faction = factions[factionName]
     local rewardType = pickRewardType(faction)

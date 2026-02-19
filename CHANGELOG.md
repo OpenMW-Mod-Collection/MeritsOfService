@@ -1,5 +1,22 @@
 # Merits of Service (OpenMW)
 
+## 2.2
+
+### Features
+
+- Added setting presets
+- Added messages for skill rewards with "Skill Rewards Trigger Handlers" option enabled. Now they would be displayed in dialogue too
+
+### Changes
+
+- Simplified process of running retroactive update
+- Overhauled default settings
+
+### Fixes
+
+- Minor edit to the skill reward messages, so that they would match vanilla ones
+- Fixed two-word skill names displaying as a single word
+
 ## 2.1.1
 
 ### Features

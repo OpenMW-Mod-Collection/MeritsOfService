@@ -1,4 +1,5 @@
 local self = require("openmw.self")
+local ui = require("openmw.ui")
 
 require("scripts.MeritsOfService.utils.consts")
 require("scripts.MeritsOfService.logic.quests")
@@ -42,15 +43,18 @@ local function retroactiveUpdate()
     end
 end
 
+local function onConsoleCommand(mode, command, selectedObject)
+    if string.lower(command) == "lua meritmyservice" then
+        retroactiveUpdate()
+        ui.printToConsole("[Merits of Service] Rewards granted.", ui.CONSOLE_COLOR.Success)
+    end
+end
+
 return {
     engineHandlers = {
         onQuestUpdate = onQuestUpdate,
         onSave = onSave,
         onLoad = onLoad,
-    },
-    interfaceName = "MeritsOfService",
-    interface = {
-        version = 1,
-        RetroactiveUpdate = retroactiveUpdate,
+        onConsoleCommand = onConsoleCommand,
     },
 }

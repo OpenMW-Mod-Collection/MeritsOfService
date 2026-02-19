@@ -15,7 +15,7 @@ CompletedQuests = {
 
 local skills = types.NPC.stats.skills
 -- use it as a skill names reference for guild yamls
-SkillNameToHandler = {
+SkillIdToHandler = {
     acrobatics  = skills.acrobatics,
     alchemy     = skills.alchemy,
     alteration  = skills.alteration,
@@ -45,9 +45,39 @@ SkillNameToHandler = {
     unarmored   = skills.unarmored,
 }
 
+SkillIdToName = {
+    acrobatics  = "Acrobatics",
+    alchemy     = "Alchemy",
+    alteration  = "Alteration",
+    armorer     = "Armorer",
+    athletics   = "Athletics",
+    axe         = "Axe",
+    block       = "Block",
+    bluntweapon = "Blunt Weapon",
+    conjuration = "Conjuration",
+    destruction = "Destruction",
+    enchant     = "Enchant",
+    handtohand  = "Hand-to-Hand",
+    heavyarmor  = "Heavy Armor",
+    illusion    = "Illusion",
+    lightarmor  = "Light Armor",
+    longblade   = "Long Blade",
+    marksman    = "Marksman",
+    mediumarmor = "Medium Armor",
+    mercantile  = "Mercantile",
+    mysticism   = "Mysticism",
+    restoration = "Restoration",
+    security    = "Security",
+    shortblade  = "Short Blade",
+    sneak       = "Sneak",
+    spear       = "Spear",
+    speechcraft = "Speechcraft",
+    unarmored   = "Unarmed",
+}
+
 ---@diagnostic disable-next-line: undefined-field
 local attrs = types.NPC.stats.attributes
-AttrNameToHandler = {
+AttrIdToHandler = {
     strength     = attrs.strength,
     intelligence = attrs.intelligence,
     willpower    = attrs.willpower,
@@ -58,9 +88,20 @@ AttrNameToHandler = {
     luck         = attrs.luck,
 }
 
+AttrIdToName = {
+    strength     = "Strength",
+    intelligence = "Intelligence",
+    willpower    = "Willpower",
+    agility      = "Agility",
+    speed        = "Speed",
+    endurance    = "Endurance",
+    personality  = "Personality",
+    luck         = "Luck",
+}
+
 RewardTypeToHandler = {
-    [SKILL_REWARD]     = SkillNameToHandler,
-    [ATTRIBUTE_REWARD] = AttrNameToHandler,
+    [SKILL_REWARD]     = SkillIdToHandler,
+    [ATTRIBUTE_REWARD] = AttrIdToHandler,
 }
 
 LuckRewardTypes = {
@@ -69,6 +110,6 @@ LuckRewardTypes = {
 }
 
 SwapRewards = {
-    [SKILL_REWARD] = ATTRIBUTE_REWARD,
+    [SKILL_REWARD]     = ATTRIBUTE_REWARD,
     [ATTRIBUTE_REWARD] = SKILL_REWARD,
 }

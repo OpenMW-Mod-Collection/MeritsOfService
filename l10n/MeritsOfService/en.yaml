@@ -2,19 +2,18 @@ page_name: Merits of Service
 page_description: |
   Get skills and attributes as additional rewards for completing faction quests. Rewards depend on factions.
 
-  Getting rewards retroactively:
-  1. Open console by pressing "~"
-  2. Run the "luap" command
-  3. Run "I.MeritsOfService.RetroactiveUpdate()"
-  4. Run "exit()"
-  5. Done!
+  To get rewards retroactively, run "lua MeritMyService" command in the console.
 
-general_groupName: General
-general_groupDesc: |
-  Note for TR/PT enjoyers!
+meta_groupName: Meta Settings
+settingsPreset_name: Settings Preset
+settingsPreset_description: |
+  LiNGeN -> Rewards granted each quest, but one at a time.
 
-  Current defaults are intended for factions in just one region (vanilla faction questlines average ~30 quests).
-  If you plan to play both Vvardenfell and Mainland guild questlines, I'd strongly suggest adjusting these values for obvious reasons.
+  Slow and Impactful -> Rewards granted every 3 quests, but in bigger chunks.
+ncgInstalled_name: Natural Character Growth Installed
+ncgInstalled_description: Adjust attribute rewards to make more sense with NCG's changes.
+
+rewards_groupName: Rewards
 questsPerReward_name: Quests per Stat Reward
 skillRewardWeight_name: Skill Reward Weight
 attributeRewardWeight_name: Attribute Reward Weight
