@@ -47,5 +47,5 @@ If a mod adds its own quest and the quest name starts with a faction prefix, it 
 
 ## Credits
 
-**Sosnoviy Bor** - Author
+**Sosnoviy Bor** - Author  
 **LiNGeN** - Brilliant idea for "Fast and Small" settings preset
