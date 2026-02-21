@@ -1,5 +1,11 @@
 # Merits of Service (OpenMW)
 
+## 2.2.1
+
+### Fixes
+
+- Fixed Great Houses not giving any rewards
+
 ## 2.2
 
 ### Features

@@ -17,6 +17,13 @@ local function populateFactions()
                 attributes = record.attributes or {},
                 skills = record.skills or {}
             }
+            if string.find(record.name, "Great House") then
+                -- register "house redoran" too
+                factions[string.gsub(record.name, "^%S+%s*", "", 1)] = {
+                    attributes = record.attributes or {},
+                    skills = record.skills or {}
+                }
+            end
         end
 
         ::continue::
