@@ -18,14 +18,25 @@ function GetFactionName(factions, questId)
     return nil
 end
 
-function AddCompletedQuest(completedQuests, factionName, questId)
-    if not completedQuests[factionName] then
-        completedQuests[factionName] = {
+function AddCompletedQuest(factionQuests, factionName, questId, player)
+    if not factionQuests then
+        factionQuests = {
             count = 0,
             quests = {}
         }
     end
-    completedQuests[factionName].quests[questId] = true
-    completedQuests[factionName].count =
-        completedQuests[factionName].count + 1
+
+    factionQuests.quests[questId] = true
+    factionQuests.count = factionQuests.count + 1
+
+    -- not used in the mod itself
+    -- made for other mods to track if they need to
+    local eventData = {
+        player = player,
+        factionName = factionName,
+        questId = questId,
+        questCount = factionQuests.count,
+    }
+    player:sendEvent("MoS_newFactionQuestCompleted", eventData)
+    core.sendGlobalEvent("MoS_newFactionQuestCompleted", eventData)
 end

@@ -1,5 +1,13 @@
 # Merits of Service (OpenMW)
 
+## 3.0
+
+### Features
+
+- Added API for other mods to add their own rewards based on completed faction quests
+- Added new events for other mods to track data parsed here
+- Added support for Project Cyrodiil's Order of Itinerant Priests faction
+
 ## 2.2.1
 
 ### Fixes

@@ -16,7 +16,13 @@ ncgInstalled_description: Adjust attribute rewards to make more sense with NCG's
 rewards_groupName: Rewards
 questsPerReward_name: Quests per Stat Reward
 skillRewardWeight_name: Skill Reward Weight
+skillRewardWeight_desc: >
+  For this setting to take effect, you'd need to reload lua scripts.
+  Either run "reloadlua" in the console or restart the game.
 attributeRewardWeight_name: Attribute Reward Weight
+attributeRewardWeight_desc: >
+  For this setting to take effect, you'd need to reload lua scripts.
+  Either run "reloadlua" in the console or restart the game.
 
 skills_groupName: Skill Rewards
 minSkillReward_name: Min Skills Granted

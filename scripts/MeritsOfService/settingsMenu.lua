@@ -60,6 +60,7 @@ I.Settings.registerGroup {
         {
             key = 'skillRewardWeight',
             name = 'skillRewardWeight_name',
+            description = "skillRewardWeight_desc",
             renderer = 'number',
             integer = false,
             default = 1,
@@ -68,6 +69,7 @@ I.Settings.registerGroup {
         {
             key = 'attributeRewardWeight',
             name = 'attributeRewardWeight_name',
+            description = "attributeRewardWeight_desc",
             renderer = 'number',
             integer = false,
             default = 0.2,

@@ -18,8 +18,12 @@ end
 
 --- Pick a random key from a weight table
 --- @param weights table<string, number>   -- e.g. { a = 30, b = 50, c = 20 }
---- @return string key                    -- chosen key
+--- @return string|nil key                    -- chosen key
 function WeightedRandom(weights)
+    -- if provided table is empty
+    if not next(weights) then
+        return nil
+    end
     -- compute total weight
     local total = 0
     for _, w in pairs(weights) do
@@ -27,7 +31,6 @@ function WeightedRandom(weights)
     end
 
     if total == 0 then
-        ---@diagnostic disable-next-line: return-type-mismatch
         return nil -- no valid weights at all
     end
 

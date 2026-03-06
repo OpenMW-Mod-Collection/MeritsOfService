@@ -1,11 +1,10 @@
 local ambient = require("openmw.ambient")
 local I = require("openmw.interfaces")
 local storage = require("openmw.storage")
+local self = require("openmw.self")
 
 require("scripts.MeritsOfService.utils.consts")
 require("scripts.MeritsOfService.utils.random")
-
-local sectionRewards = storage.playerSection("SettingsMeritsOfService_rewards")
 local sectionSkills = storage.playerSection("SettingsMeritsOfService_skills")
 local sectionAttrs = storage.playerSection("SettingsMeritsOfService_attributes")
 
@@ -13,11 +12,11 @@ local sectionAttrs = storage.playerSection("SettingsMeritsOfService_attributes")
 -- | Increasers |
 -- +------------+
 
-local function increaseSkillsInterface(player, stats)
+local function increaseSkillsInterface(stats)
     local msg = ""
     local src = I.SkillProgression.SKILL_INCREASE_SOURCES.Usage
     for skillId, count in pairs(stats) do
-        local skill = SkillIdToHandler[skillId](player)
+        local skill = SkillIdToHandler[skillId](self)
         local skillXp = skill.progress
 
         -- increase skill
@@ -37,14 +36,14 @@ local function increaseSkillsInterface(player, stats)
     msg = msg:sub(1, -2) -- remove last newline
     -- send message only if player is in dialogue
     if I.UI.getMode() == I.UI.MODE.Dialogue then
-        player:sendEvent("ShowMessage", { message = msg })
+        self:sendEvent("ShowMessage", { message = msg })
     end
 end
 
-local function increaseSkillsBrute(player, stats)
+local function increaseSkillsBrute(stats)
     local msg = ""
     for skillId, count in pairs(stats) do
-        local skill = SkillIdToHandler[skillId](player)
+        local skill = SkillIdToHandler[skillId](self)
 
         -- increase skill
         for _ = 1, count do
@@ -60,22 +59,22 @@ local function increaseSkillsBrute(player, stats)
         msg = msg .. "Your " .. SkillIdToName[skillId] .. " skill increased to " .. tostring(skill.base) .. ".\n"
     end
     msg = msg:sub(1, -2) -- remove last newline
-    player:sendEvent("ShowMessage", { message = msg })
+    self:sendEvent("ShowMessage", { message = msg })
     ambient.playSound("skillraise")
 end
 
-local function increaseAttrs(player, stats)
+local function increaseAttrs(stats)
     local msg = ""
     for attrId, count in pairs(stats) do
-        local attr = AttrIdToHandler[attrId](player)
+        local attr = AttrIdToHandler[attrId](self)
 
         -- luck reward roll - REPLACE
         if sectionAttrs:get("luckRewardType") == LuckRewardTypes.REPLACE
             and math.random() <= sectionAttrs:get("luckRewardChance")
-            and AttrIdToHandler.luck(player).base <= sectionAttrs:get("capAttr")
+            and AttrIdToHandler.luck(self).base <= sectionAttrs:get("capAttr")
         then
             attrId = "luck"
-            attr = AttrIdToHandler.luck(player)
+            attr = AttrIdToHandler.luck(self)
         end
 
         -- increase attribute
@@ -90,60 +89,23 @@ local function increaseAttrs(player, stats)
     -- luck reward roll - BONUS
     if sectionAttrs:get("luckRewardType") == LuckRewardTypes.BONUS
         and math.random() <= sectionAttrs:get("luckRewardChance")
-        and AttrIdToHandler.luck(player).base < sectionAttrs:get("capAttr")
+        and AttrIdToHandler.luck(self).base < sectionAttrs:get("capAttr")
     then
-        local attr = AttrIdToHandler.luck(player)
+        local attr = AttrIdToHandler.luck(self)
         attr.base = attr.base + 1
         msg = msg .. "Your Luck increased to " .. tostring(attr.base) .. ".\n"
     end
 
     msg = msg:sub(1, -2) -- remove last newline
-    player:sendEvent("ShowMessage", { message = msg })
+    self:sendEvent("ShowMessage", { message = msg })
     ambient.playSound("skillraise")
-end
-
-local function increaseStat(player, statType, stats)
-    if statType == SKILL_REWARD then
-        if sectionSkills:get("triggerSkillupHandlers") then
-            increaseSkillsInterface(player, stats)
-        else
-            increaseSkillsBrute(player, stats)
-        end
-    elseif statType == ATTRIBUTE_REWARD then
-        increaseAttrs(player, stats)
-    end
 end
 
 -- +---------+
 -- | Rewards |
 -- +---------+
 
-local function pickRewardType(faction)
-    if not faction[SKILL_REWARD] then return ATTRIBUTE_REWARD end
-
-    if not faction[ATTRIBUTE_REWARD] then return SKILL_REWARD end
-
-    return WeightedRandom({
-        [SKILL_REWARD]     = sectionRewards:get("skillRewardWeight"),
-        [ATTRIBUTE_REWARD] = sectionRewards:get("attributeRewardWeight")
-    })
-end
-
-local function pickRewardAmount(rewardType)
-    local rewardRange = {
-        [SKILL_REWARD] = {
-            sectionSkills:get("minSkillReward"),
-            sectionSkills:get("maxSkillReward")
-        },
-        [ATTRIBUTE_REWARD] = {
-            sectionAttrs:get("minAttributeReward"),
-            sectionAttrs:get("maxAttributeReward")
-        }
-    }
-    return math.random(table.unpack(rewardRange[rewardType]))
-end
-
-local function pickRewards(player, faction, rewardType, rewardAmount)
+local function pickRewards(faction, rewardType, rewardAmount)
     -- init data for stat picking
     local rewards = {}
     local statList = {}
@@ -159,7 +121,7 @@ local function pickRewards(player, faction, rewardType, rewardAmount)
     for _ = 1, rewardAmount do
         -- prune capped stats
         for stat, _ in pairs(statList) do
-            local currStat = RewardTypeToHandler[rewardType][stat](player)
+            local currStat = RewardTypeToHandler[rewardType][stat](self)
             local currReward = rewards[stat] or 0
 
             if currStat.base + currReward >= caps[rewardType] then
@@ -176,24 +138,75 @@ local function pickRewards(player, faction, rewardType, rewardAmount)
     return rewards
 end
 
-function GrantStats(player, factions, factionName, completedQuests)
-    if completedQuests % sectionRewards:get("questsPerReward") ~= 0 then return end
+local function increaseStat(rewardType, possibleRewards, rewardAmount)
+    local rewards = pickRewards(possibleRewards, rewardType, rewardAmount)
+    if rewardType == SKILL_REWARD then
+        if sectionSkills:get("triggerSkillupHandlers") then
+            increaseSkillsInterface(rewards)
+        else
+            increaseSkillsBrute(rewards)
+        end
+    elseif rewardType == ATTRIBUTE_REWARD then
+        increaseAttrs(rewards)
+    end
+end
 
-    local faction = factions[factionName]
-    local rewardType = pickRewardType(faction)
-    local rewardAmount = pickRewardAmount(rewardType)
-
-    local rewards = pickRewards(player, faction, rewardType, rewardAmount)
-
-    -- if the limit on picked type of reward is reached
-    if not next(rewards) then
-        rewardType = SwapRewards[rewardType]
-        rewardAmount = pickRewardAmount(rewardType)
-        rewards = pickRewards(player, faction, rewardType, rewardAmount)
+local function statCapChecker(rewardList, cap, stats)
+    if not rewardList or not next(rewardList) then
+        return true
     end
 
-    -- if both skill and attribute rewards are exhausted
-    if not next(rewards) then return end
+    for _, statReward in ipairs(rewardList) do
+        if stats[statReward](self).base < cap then
+            return false
+        end
+    end
 
-    increaseStat(player, rewardType, rewards)
+    return true
+end
+
+local function statAmountPicker(section, keyMin, keyMax)
+    local min = section:get(keyMin)
+    local max = section:get(keyMax)
+    return math.random(min, max)
+end
+
+-- +-----------+
+-- | Endpoints |
+-- +-----------+
+
+function AttrAmountPicker()
+    return statAmountPicker(
+        sectionAttrs,
+        "minAttributeReward",
+        "maxAttributeReward")
+end
+
+function SkillAmountPicker()
+    return statAmountPicker(
+        sectionAttrs,
+        "minAttributeReward",
+        "maxAttributeReward")
+end
+
+function AttrCapChecker(rewardList)
+    return statCapChecker(
+        rewardList,
+        sectionAttrs:get("capAttr"),
+        self.type.stats.attributes)
+end
+
+function SkillCapChecker(rewardList)
+    return statCapChecker(
+        rewardList,
+        sectionSkills:get("capSkills"),
+        self.type.stats.skills)
+end
+
+function GrantAttributes(rewardList, rewardAmount)
+    increaseStat(ATTRIBUTE_REWARD, rewardList, rewardAmount)
+end
+
+function GrantSkills(rewardList, rewardAmount)
+    increaseStat(SKILL_REWARD, rewardList, rewardAmount)
 end
