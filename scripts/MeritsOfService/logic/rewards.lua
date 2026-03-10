@@ -1,5 +1,3 @@
-local storage = require("openmw.storage")
-
 require("scripts.MeritsOfService.utils.random")
 
 function PickRewardType(possibleRewards, settingsMap, prevWeights)
@@ -31,12 +29,4 @@ function PickRewardType(possibleRewards, settingsMap, prevWeights)
     return conditionSatisfied
         and rewardType
         or PickRewardType(possibleRewards, settingsMap, weights)
-end
-
-function PickRewardAmount(settings)
-    local section = storage.playerSection(settings.section)
-        or storage.globalSection(settings.section)
-    local min = section:get(settings.keyMinReward)
-    local max = section:get(settings.keyMaxReward)
-    return math.random(min, max)
 end

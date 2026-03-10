@@ -152,12 +152,12 @@ local function increaseStat(rewardType, possibleRewards, rewardAmount)
 end
 
 local function statCapChecker(rewardList, cap, stats)
-    if not rewardList or not next(rewardList) then
+    if not rewardList or not rewardList[1] then
         return true
     end
 
     for _, statReward in ipairs(rewardList) do
-        if stats[statReward](self).base < cap then
+        if stats[statReward](self).base >= cap then
             return false
         end
     end

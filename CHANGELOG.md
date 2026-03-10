@@ -4,7 +4,7 @@
 
 ### Features
 
-- Added API for other mods to add their own rewards based on completed faction quests
+- Added API for other mods to add their own rewards to the pool based on completed faction quests
 - Added new events for other mods to track data parsed here
 - Added support for Project Cyrodiil's Order of Itinerant Priests faction
 

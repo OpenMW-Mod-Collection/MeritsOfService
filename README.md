@@ -41,6 +41,10 @@ If a mod adds its own quest and the quest name starts with a faction prefix, it 
 
 **_No patching required._**
 
+### API for Modders
+
+Check interfaces in `player.lua` and events in `quests.lua`.
+
 ## Consider also
 
 - [Morrowind Quests Redux](https://www.nexusmods.com/morrowind/mods/54060) by Killdozery - Improves quest rewards while being a very compatible and lightweight mod.

@@ -6,14 +6,14 @@ require("scripts.MeritsOfService.utils.consts")
 require("scripts.MeritsOfService.logic.quests")
 require("scripts.MeritsOfService.logic.statRewards")
 require("scripts.MeritsOfService.logic.rewards")
+local rewardPool = require("scripts.MeritsOfService.utils.factionParser")
 
 local sectionRewards = storage.playerSection("SettingsMeritsOfService_rewards")
 
-local rewardPool = require("scripts.MeritsOfService.utils.factionParser")
 local rewardMap = {
     attributes = {
         weightGetter       = function()
-            sectionRewards:get("attributeRewardWeight")
+            return sectionRewards:get("attributeRewardWeight")
         end,
         rewardAmountPicker = AttrAmountPicker,
         rewardGiver        = GrantAttributes,
@@ -21,7 +21,7 @@ local rewardMap = {
     },
     skills = {
         weightGetter       = function()
-            sectionRewards:get("skillRewardWeight")
+            return sectionRewards:get("skillRewardWeight")
         end,
         rewardAmountPicker = SkillAmountPicker,
         rewardGiver        = GrantSkills,
@@ -48,7 +48,7 @@ local function onQuestUpdate(questId, stage)
         return
     end
 
-    AddCompletedQuest(factionQuests, factionName, questId, self)
+    AddCompletedQuest(CompletedQuests, factionName, questId, self)
 
     local questsUntilReward = factionQuests.count % sectionRewards:get("questsPerReward")
     -- if it's too early to give rewards
@@ -59,7 +59,7 @@ local function onQuestUpdate(questId, stage)
     if not rewardType then return end
 
     local settings = rewardMap[rewardType]
-    local rewardAmount = PickRewardAmount(settings)
+    local rewardAmount = settings.rewardAmountPicker()
     settings.rewardGiver(rewardPool[factionName], rewardAmount)
 end
 
@@ -75,6 +75,7 @@ local function onConsoleCommand(mode, command, selectedObject)
     if string.lower(command) == "lua meritmyservice" then
         -- retoractive update
         for questId, _ in pairs(self.type.quests(self)) do
+            print(questId)
             onQuestUpdate(questId, nil)
         end
 
