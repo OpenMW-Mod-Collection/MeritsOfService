@@ -1,5 +1,9 @@
 # Merits of Service (OpenMW)
 
+## 3.0.1
+
+- Fixed skill rewards using attribute settings
+
 ## 3.0
 
 ### Features
