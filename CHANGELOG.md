@@ -3,7 +3,7 @@
 ## 3.0.2
 
 - Fixed a typo preventing skills rewards from being given to the player
-- Removed all `goto` code snippets for futureproofing
+- Removed all `goto` code snippets for future proofing
 
 ## 3.0.1
 
