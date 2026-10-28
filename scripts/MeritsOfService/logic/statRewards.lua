@@ -185,8 +185,8 @@ end
 function SkillAmountPicker()
     return statAmountPicker(
         sectionSkills,
-        "minAttributeReward",
-        "maxAttributeReward")
+        "minSkillReward",
+        "maxSkillReward")
 end
 
 function AttrCapChecker(rewardList)
